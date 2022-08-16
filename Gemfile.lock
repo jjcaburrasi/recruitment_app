@@ -62,13 +62,10 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
-<<<<<<< HEAD
     bcrypt (3.1.18)
-=======
     ansi (1.5.0)
     autoprefixer-rails (10.4.7.0)
       execjs (~> 2)
->>>>>>> main-page
     bindex (0.8.1)
     bootsnap (1.13.0)
       msgpack (~> 1.2)
