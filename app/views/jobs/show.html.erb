@@ -1,0 +1,16 @@
+
+<% provide(:title, @job.title) %>
+<div class="row">
+
+    <section class="user_info">
+        <h1>
+            <%= @job.title %><br>
+        </h1>
+        <h2>
+            <%= @job.description %>
+        </h2>
+      </h1>
+    </section>
+
+   <%= link_to "Apply Now!", "#", class: "btn btn-lg btn-primary" %>
+</div>

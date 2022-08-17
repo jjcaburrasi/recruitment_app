@@ -1,7 +1,13 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+# Generate a bunch of additional users.
+100.times do |n|
+title  = Faker::Job.title
+description = "We need a #{Faker::Job.seniority} #{Faker::Job.position}.
+You will work in #{Faker::Job.field} sector. Very important to have nice
+#{Faker::Job.key_skill}, #{Faker::Job.key_skill} and #{Faker::Job.key_skill}
+skills.
+This will be a #{Faker::Job.employment_type} contract, and we need a minimum education 
+level of #{Faker::Job.education_level}"
+Job.create!(title:  title,
+      description: description)
+end

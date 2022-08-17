@@ -1,0 +1,12 @@
+<% provide(:title, 'All Jobs') %>
+<h1>All Jobs</h1>
+
+<%= will_paginate %>
+<ul class="jobs">
+  <% @jobs.each do |job| %>
+    <li>
+      <%= link_to job.title, job %>
+    </li>
+  <% end %>
+</ul>
+<%= will_paginate %>

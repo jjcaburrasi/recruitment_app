@@ -7,6 +7,10 @@ ruby '2.7.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.6', '>= 6.1.6.1'
 gem 'bootstrap-sass', '3.4.1'
+gem 'kaminari'
+gem 'faker',          '2.11.0'
+gem 'will_paginate',           '3.3.0'
+gem 'bootstrap-will_paginate', '1.0.0'
 # Use postgresql as the database for Active Record
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
