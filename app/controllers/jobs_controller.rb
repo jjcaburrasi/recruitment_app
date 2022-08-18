@@ -6,6 +6,6 @@ class JobsController < ApplicationController
     end
 
     def index
-        @jobs = Job.paginate(page: params[:page])
+        @jobs = Job.page params[:page]
     end
 end
