@@ -1,4 +1,4 @@
-#Create a admin sample user.
+# #Create a admin sample user.
 User.create!(name: "AdminUser", 
              email: "admin@railstutorial.org", 
              password: "123456",
