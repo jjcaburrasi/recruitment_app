@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 
     has_many :applications
+    has_many :comments
     has_many :jobs , through: :applications
 
     # Include default devise modules. Others available are:
