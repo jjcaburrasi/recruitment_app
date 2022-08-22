@@ -11,5 +11,20 @@ class ApplicationController < ActionController::Base
 
         def after_sign_in_path_for(resource)
            @user
+        end   
+
+        def logged_in_user
+            unless user_signed_in?
+                flash[:danger] = "Please log in."
+                redirect_to new_user_session_path
+            end
+        end
+
+        
+        def admin_user
+            unless current_user.admin?
+                flash[:danger] = "Please log in as admin user."
+                redirect_to root_url
+            end   
         end
 end
