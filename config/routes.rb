@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   get  '/jobs',    to: 'jobs#index'
   resources :users
   resources :jobs
+  resources :applications, only: [:create, :destroy]
 end

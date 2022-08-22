@@ -1,8 +1,10 @@
 class User < ApplicationRecord
 
-    has_many :applications
+    has_many :applications, class_name: "Application",
+                            foreign_key: "user_id",
+                            dependent: :destroy
     has_many :comments
-    has_many :jobs , through: :applications
+    has_many :jobs , through: :applications, source: :job
 
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -18,6 +20,18 @@ class User < ApplicationRecord
                         format: { with: VALID_EMAIL_REGEX },
                         uniqueness: { case_sensitive: false }
     
+    def apply(job)
+        jobs << job
+    end
+
+    def unapply(job)
+        jobs.delete(job)
+    end
+
+    def applied?(job)
+        jobs.includes?(job)
+    end
+
     private
 
         # Converts email to all lowercase.

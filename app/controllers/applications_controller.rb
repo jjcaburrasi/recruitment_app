@@ -1,16 +1,16 @@
 class ApplicationsController < ApplicationController
+  before_action :logged_in_user
   
-  def new
-  end
-
   def create
-    @applications = current_user.job.build(micropost_params)
-    if @applications.save
-      flash[:success] = "You have applied!"
-      redirect_to root_url
-    else
-      render 'static_pages/home'
-    end
+    job = Job.find(params[:job_id])
+    current_user.apply(job)
+    redirect_to current_user
   end
 
+  def destroy
+    job = Application.find(params[:id]).users
+    current_user.unapply(job)
+    redirect_to user
+  end
+     
 end
