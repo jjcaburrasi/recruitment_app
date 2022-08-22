@@ -1,6 +1,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+.alert-notice{
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+ 
+}
+
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
@@ -97,7 +105,7 @@ footer {
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1199.98px) {
   footer {
     small {
       display: block;
