@@ -1,7 +1,6 @@
 
 <% provide(:title, @job.title) %>
 <div class="row">
-
     <section class="user_info">
         <h1>
             <%= @job.title %><br>
@@ -11,8 +10,7 @@
         </h2>
       </h1>
     </section>
-
-    <% if current_user.admin? %>
+      <% if current_user.admin? %>
         <%#Manage jobs and applications%> 
         <%= link_to "Manage",  "#" , class: "btn btn-info" %>
     <% else %>
@@ -20,3 +18,4 @@
         <%= link_to "Apply now!",  "#" , class: "btn btn-success" %>
     <% end %>
 </div>
+
