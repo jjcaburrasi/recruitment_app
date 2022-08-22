@@ -12,6 +12,12 @@
       </h1>
     </section>
 
-   <%= link_to "Apply Now!", "#", class: "btn btn-lg btn-primary" %>
+  <%= form_with(model: @application, local: true) do |f| %>
+  
+  <div class="field">
+
+  </div>
+  <%= f.submit "Apply now!", class: "btn btn-primary" %>
+<% end %>
 </div>
 <%= current_user.name %>
