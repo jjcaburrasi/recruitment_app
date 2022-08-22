@@ -12,6 +12,11 @@
       </h1>
     </section>
 
-   <%= link_to "Apply Now!", "#", class: "btn btn-lg btn-primary" %>
+    <% if current_user.admin? %>
+        <%#Manage jobs and applications%> 
+        <%= link_to "Manage",  "#" , class: "btn btn-info" %>
+    <% else %>
+        <%#Could apply%> 
+        <%= link_to "Apply now!",  "#" , class: "btn btn-success" %>
+    <% end %>
 </div>
-<%= current_user.name %>
