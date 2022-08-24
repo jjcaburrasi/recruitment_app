@@ -26,11 +26,4 @@ class Job < ApplicationRecord
         users_comment << user
     end
 
-
-
-
-
-
-
-
 end

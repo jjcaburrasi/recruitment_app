@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :jobs
   resources :applications, only: [:create, :destroy]
   resources :comments, only: [:create, :destroy]
+  resources :stages, only: [:create, :destroy]
 end
