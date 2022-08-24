@@ -1,0 +1,8 @@
+<%= form_with(model: @stage, local: false) do |f| %>
+    <%#= render 'shared/error_messages', object: f.object %>
+    <div class="field">
+        <%= f.text_field :name, placeholder: "Stage name" %>
+    </div>
+    <br/>
+    <%= f.submit "Add stage", class: "btn btn-success" %>
+<% end %>

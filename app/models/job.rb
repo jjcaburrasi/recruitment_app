@@ -3,7 +3,7 @@ class Job < ApplicationRecord
                             foreign_key: "job_id",
                             dependent: :destroy
     has_many :users,  through: :applications, source: :user
-    has_many :stages
+    has_many :stages, dependent: :destroy
     has_many :comments
     paginates_per 15
 
