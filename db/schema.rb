@@ -27,12 +27,13 @@ ActiveRecord::Schema.define(version: 2022_08_19_093152) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "job_id", null: false
+    t.integer "user_id"
+    t.integer "job_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "content"
     t.index ["job_id"], name: "index_comments_on_job_id"
+    t.index ["user_id", "job_id"], name: "index_comments_on_user_id_and_job_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -79,7 +80,5 @@ ActiveRecord::Schema.define(version: 2022_08_19_093152) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "comments", "jobs"
-  add_foreign_key "comments", "users"
   add_foreign_key "stages", "jobs"
 end

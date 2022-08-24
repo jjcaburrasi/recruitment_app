@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :users
   resources :jobs
   resources :applications, only: [:create, :destroy]
+  resources :comments, only: [:create, :destroy]
 end

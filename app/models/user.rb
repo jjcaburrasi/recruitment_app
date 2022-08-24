@@ -3,8 +3,11 @@ class User < ApplicationRecord
     has_many :applications, class_name: "Application",
                             foreign_key: "user_id",
                             dependent: :destroy
-    has_many :comments
-    has_many :jobs , through: :applications, source: :job
+    has_many :comments,     class_name: "Comment",
+                            foreign_key: "user_id",
+                            dependent: :destroy
+    has_many :job_comment,  through: :comments,     source: :job
+    has_many :jobs ,        through: :applications, source: :job
 
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -29,7 +32,11 @@ class User < ApplicationRecord
     end
 
     def applied?(job)
-        jobs.includes?(job)
+        jobs.include?(job)
+    end
+
+    def comment(job)
+        job_comment << job
     end
 
     private

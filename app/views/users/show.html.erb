@@ -1,6 +1,37 @@
 <% provide(:title, @user.name) %>
-<h1>
   <%= gravatar_for @user %>
   <%= @user.name %><br><%= @user.email %><br><%= @user.description %><br>
 
-</h1>
+<% if current_user.admin? && current_user!= @user%>
+<h1> This user have applied to </h1>
+  <% @user.jobs.each do |job| %>
+    <li>
+      <%= job.title %>
+    </li>
+    <% end %>
+<% elsif !current_user.admin? && current_user == @user%>
+<h1> You have applied to </h1>
+  <% @user.jobs.each do |job| %>
+    <li>
+      <%= job.title %>
+    </li>
+    <% end %>
+<% end %>
+<% if current_user.admin? && current_user!=@user %>
+  <%#Manage jobs and applications%> 
+  <%= link_to "Manage",  "#" , class: "btn btn-info" %><br><br>
+  <%#Create comments%> 
+  
+    <%= form_with(model: @user.comments.build, local: false) do |f| %>
+        <%= hidden_field_tag :job_id, 3%>
+        <%= hidden_field_tag :user_id, @user.id%>
+        <div><%= text_area_tag :content, "" %></div>
+        <%= f.submit "Comment!", class: "btn btn-success" %>
+    <% Comment.where("job_id = ? AND user_id = ?", 3, @user).order(created_at: :desc).each do |comment| %>
+    <li>
+      <%= comment.content %>  
+    </li>
+      
+    <% end %>
+<% end %>
+<% end %>

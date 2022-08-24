@@ -4,7 +4,7 @@ User.create!(name: "AdminUser",
              password: "123456",
              admin: true)
 
-# Generate a bunch of additional users.
+# Generate a bunch of additional jobs.
 100.times do |n|
       title  = Faker::Job.title
 
