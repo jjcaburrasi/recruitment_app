@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'applications/new'
-  get 'applications/create'
   devise_for :users
   root 'static_pages#home'
   get  '/help',    to: 'static_pages#help'
@@ -9,6 +7,7 @@ Rails.application.routes.draw do
   get  '/jobs',    to: 'jobs#index'
   resources :users
   resources :jobs
-  resources :applications, only: [:create, :destroy]
+  resources :applications
+
   resources :comments, only: [:create, :destroy]
 end

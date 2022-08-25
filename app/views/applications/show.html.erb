@@ -1,0 +1,34 @@
+<% provide(:title, @application.id) %>
+
+<% if current_user.admin? %>
+
+    <h2>User: </h2><%=@application.user.name%><br>
+    <h2>Job applied: </h2><%=@application.job.title%>
+        <%#Manage jobs and applications%> 
+    <%= link_to "Manage",  "#" , class: "btn btn-info" %>
+        <%= form_with(model: @application.user.comments.build, local: false) do |f| %>
+            <%= hidden_field_tag :job_id, @application.job_id%>
+            <%= hidden_field_tag :user_id, @application.user_id%>
+            <div><%= text_area_tag :content, "" %></div>
+            <%= f.submit "Comment!", class: "btn btn-success" %>
+        <% if @all_comments %>
+            <% @all_comments.each do |comment| %>
+            <li>
+            <%= comment.content %>  
+            </li>
+            <% end %>
+            <% end %>
+        <% end %>
+<% else %>
+<h2>Hello: </h2><%=@application.user.name%><br>
+<h2>You have applied to: </h2><%=@application.job.title%>
+<h2>We will inform you about the status of your apply soon!</h2>
+
+<% end %>
+        
+
+
+  
+
+ 
+ 

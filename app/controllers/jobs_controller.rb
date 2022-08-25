@@ -7,6 +7,7 @@ class JobsController < ApplicationController
 
     def show
         @job = Job.find(params[:id])
+        #@all_comments = Comment.get_all_comments_job_user(@job.id, $user_seeker.id)
     end
 
     def index
