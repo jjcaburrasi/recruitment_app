@@ -23,7 +23,11 @@ class JobsController < ApplicationController
     end
 
     def index
-        @jobs = Job.page params[:page]
+        @jobs = Job.page params[:page] 
+    end
+
+    def kanban
+        @job = Job.find(params[:job_id])
     end
 
 end

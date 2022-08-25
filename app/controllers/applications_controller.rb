@@ -25,4 +25,12 @@ class ApplicationsController < ApplicationController
     redirect_to user
   end
      
+  def promote
+    app = Application.find(params[:id])
+    stage = app.stage
+    @job = stage.job
+    next_stage = @job.next_stage(stage)
+    app.update_attribute(:stage, next_stage)
+    redirect_to kanban_path(job_id: @job.id)
+  end
 end

@@ -26,4 +26,8 @@ class Job < ApplicationRecord
         users_comment << user
     end
 
+    def next_stage(stage)
+        
+        stages[stages.index(stage)+1]
+    end
 end
