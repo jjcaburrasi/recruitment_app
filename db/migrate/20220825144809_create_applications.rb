@@ -8,8 +8,8 @@ class CreateApplications < ActiveRecord::Migration[6.1]
       t.timestamps
     end
 
-    add_index :applications, :user_id
-    add_index :applications, :job_id
-    add_index :applications, [:user_id, :job_id], unique: true
+    # add_index :applications, :user_id
+    # add_index :applications, :job_id
+    # add_index :applications, [:user_id, :job_id], unique: true
   end
 end

@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
     before_action :logged_in_user, only: [:show]
-    before_action :admin_user, only: [:show, :edit, :destroy]
+    before_action :admin_user, only: [:edit, :destroy]
 
     def new
         @job = Job.new
@@ -19,7 +19,7 @@ class JobsController < ApplicationController
         @job = Job.find(params[:id])
 
         @stages = @job.stages
-        #@all_comments = Comment.get_all_comments_job_user(@job.id, $user_seeker.id)
+        
     end
 
     def index

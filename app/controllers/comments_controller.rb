@@ -5,7 +5,7 @@ def create
     job = Job.find(params[:job_id])
     user = User.find(params[:user_id])
     Comment.create_comment(job, user, params[:content])
-    redirect_to application
+    redirect_to user
 end
 
 def destroy
