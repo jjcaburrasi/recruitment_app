@@ -2,8 +2,8 @@ class ApplicationsController < ApplicationController
   before_action :logged_in_user
   
   def create
-    job = Job.find(params[:job_id])
-    current_user.apply(job)
+    @job = Job.find(params[:job_id])
+    Application.create(job: @job, user: current_user, stage: @job.stages.first)
     redirect_to current_user
   end
 
