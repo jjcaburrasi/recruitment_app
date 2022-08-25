@@ -4,7 +4,7 @@
     
     <section class="user_info">
         <h1>
-            <%= @job.title %><br>
+            <%= @job.title %><br>    
         </h1>
         <h2>
             <%= @job.description %>
@@ -29,16 +29,36 @@
 <div class="row">    
     <%# <% if current_user.admin? %>
         <%#Manage jobs and applications%> 
+<<<<<<< HEAD
         <%#= link_to "Manage",  "#" , class: "btn btn-info" %>
     <%# else %>
+=======
+        <%= link_to "Manage",  "#" , class: "btn btn-info" %>
+    <% else %>
+    <% if !current_user.admin?%>
+
+
+>>>>>>> 88127aa092a0c2e4fea071a7ff60cd0d844d12cf
         <%#Could apply%> 
         <%#if !current_user.applied?(@job)%>
         
+<<<<<<< HEAD
         <%#= form_with(model: current_user.applications.build, local: false) do |f| %>
             <div><%#= hidden_field_tag :job_id, @job.id %></div>
             <%#= f.submit "Apply now!", class: "btn btn-success" %>
         <%# end %>
         <%# end %>
     <%# end %>
+=======
+        <%= form_with(model: current_user.applications.build, local: false) do |f| %>
+            <div><%= hidden_field_tag :job_id, @job.id %></div>
+            <%= f.submit "Apply now!", class: "btn btn-success" %>
+        <% end %>
+        <% else %>
+         <button type = "button" class= "btn btn-secondary" disabled> You have already applied to this job </button>
+        <% end %>
+    <% end %>
+
+>>>>>>> 88127aa092a0c2e4fea071a7ff60cd0d844d12cf
 </div>
 
