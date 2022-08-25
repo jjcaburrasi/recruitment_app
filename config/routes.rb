@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :stages
   get 'applications/new'
   get 'applications/create'
   devise_for :users

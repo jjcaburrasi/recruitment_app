@@ -6,6 +6,5 @@ class CreateStages < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
-    add_index :stages, [:job_id, :created_at]
   end
 end

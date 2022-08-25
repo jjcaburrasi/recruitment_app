@@ -1,7 +1,6 @@
 require "test_helper"
 
 class StageTest < ActiveSupport::TestCase
-
   def setup
     @job = jobs(:job1)
     @stage = @job.stages.build(name: "Selection")
@@ -20,5 +19,4 @@ class StageTest < ActiveSupport::TestCase
     @stage.name = " "
     assert_not @stage.valid?
   end
-
 end
