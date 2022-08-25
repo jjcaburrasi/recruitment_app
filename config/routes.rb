@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
-  resources :stages
-  get 'applications/new'
-  get 'applications/create'
-=======
->>>>>>> 88127aa092a0c2e4fea071a7ff60cd0d844d12cf
+
   devise_for :users
   root 'static_pages#home'
   get  '/help',    to: 'static_pages#help'
@@ -14,6 +9,7 @@ Rails.application.routes.draw do
   resources :users
   resources :jobs
   resources :applications
+  resources :stages
 
   resources :comments, only: [:create, :destroy]
   resources :stages, only: [:create, :destroy]

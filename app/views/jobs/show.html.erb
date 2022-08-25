@@ -18,7 +18,13 @@
                         <h4>Stages of the selection process</h4>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <%#= render @stages %>
+                        
+                        <% @job.stages.each do |s| %>
+                            <li>
+                            <%= link_to s.name, s %>
+                            </li>
+                        <% end %>
+                        
                     </ul>
                 </div>
                 <br/>
@@ -27,38 +33,19 @@
     </aside>
 </div>
 <div class="row">    
-    <%# <% if current_user.admin? %>
+    <% if current_user.admin? %>
         <%#Manage jobs and applications%> 
-<<<<<<< HEAD
-        <%#= link_to "Manage",  "#" , class: "btn btn-info" %>
-    <%# else %>
-=======
         <%= link_to "Manage",  "#" , class: "btn btn-info" %>
     <% else %>
-    <% if !current_user.admin?%>
-
-
->>>>>>> 88127aa092a0c2e4fea071a7ff60cd0d844d12cf
         <%#Could apply%> 
-        <%#if !current_user.applied?(@job)%>
-        
-<<<<<<< HEAD
-        <%#= form_with(model: current_user.applications.build, local: false) do |f| %>
-            <div><%#= hidden_field_tag :job_id, @job.id %></div>
-            <%#= f.submit "Apply now!", class: "btn btn-success" %>
-        <%# end %>
-        <%# end %>
-    <%# end %>
-=======
+        <%if !current_user.applied?(@job)%>
         <%= form_with(model: current_user.applications.build, local: false) do |f| %>
             <div><%= hidden_field_tag :job_id, @job.id %></div>
             <%= f.submit "Apply now!", class: "btn btn-success" %>
         <% end %>
         <% else %>
-         <button type = "button" class= "btn btn-secondary" disabled> You have already applied to this job </button>
+            <button type = "button" class= "btn btn-secondary" disabled> You have already applied to this job </button>
         <% end %>
     <% end %>
-
->>>>>>> 88127aa092a0c2e4fea071a7ff60cd0d844d12cf
 </div>
 
