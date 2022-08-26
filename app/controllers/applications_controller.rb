@@ -33,4 +33,13 @@ class ApplicationsController < ApplicationController
     app.update_attribute(:stage, next_stage)
     redirect_to kanban_path(job_id: @job.id)
   end
+
+  def go_back_promote
+    app = Application.find(params[:id])
+    stage = app.stage
+    @job = stage.job
+    previous_stage = @job.previous_stage(stage)
+    app.update_attribute(:stage, previous_stage)
+    redirect_to kanban_path(job_id: @job.id)
+  end
 end

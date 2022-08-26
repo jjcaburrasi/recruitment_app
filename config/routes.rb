@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get  '/kanban',   to: 'jobs#kanban' ##modificarrrrr
   get  '/promote',   to: 'applications#promote' ##modificarrrrr
+  get  '/unpromote', to: 'applications#go_back_promote' #modificat tambieeeeeen
   get  '/help',    to: 'static_pages#help'
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'

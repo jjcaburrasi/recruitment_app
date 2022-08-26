@@ -15,6 +15,9 @@
             <button type="button" class="btn btn-success">
               <%= link_to '', promote_path(id: app.id),  class:"glyphicon glyphicon-forward"%> 
             </button>
+            <button type="button" class="btn btn-success">
+              <%= link_to '', unpromote_path(id: app.id),  class:"glyphicon glyphicon-backward"%> 
+            </button>
           </div>
         </li>
       <% end %>

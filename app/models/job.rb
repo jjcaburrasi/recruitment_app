@@ -27,8 +27,20 @@ class Job < ApplicationRecord
     end
 
     def next_stage(stage)
+        if stage.id == stages.length
+            stages[stages.index(stage)]
+        else  
+            stages[stages.index(stage)+1]
+        end
         
-        stages[stages.index(stage)+1]
+    end
+
+    def previous_stage(stage)
+        if stage.id == 1
+            stages[stages.index(stage)]
+        else  
+            stages[stages.index(stage)-1]
+        end
     end
 
     def self.unpublished_jobs
