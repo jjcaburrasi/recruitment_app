@@ -32,10 +32,17 @@
         </section>
     </aside>
 </div>
-<div class="row">    
+<div class="row"> 
+<% if user_signed_in? %>   
     <% if current_user.admin? %>
         <%#Manage jobs and applications%> 
         <%= link_to "Manage",  kanban_path(job_id: @job.id),  class: "btn btn-info" %>
+        <%#Add stages if dont have%>
+         <% if !@job.published? %>
+         <%= link_to "Add stages",  new_stage_path,  class: "btn btn-info" %>
+         <%= link_to "Finish job creation", "#",  class: "btn btn-info" %>
+         <%end%>
+
     <% else %>
         <%#Could apply%> 
         <%if !current_user.applied?(@job)%>
@@ -47,5 +54,6 @@
             <button type = "button" class= "btn btn-secondary" disabled> You have already applied to this job </button>
         <% end %>
     <% end %>
+<%end%>
 </div>
 

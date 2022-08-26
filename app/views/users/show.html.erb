@@ -1,21 +1,24 @@
 <% provide(:title, @user.name) %>
   <%= gravatar_for @user %>
   <%= @user.name %><br><%= @user.email %><br><%= @user.description %><br>
-
-<% if current_user.admin? && current_user!= @user%>
-<h1> This user have applied to </h1>
-  <% @user.applications.each do |app| %>
-    <li>
-     <%= link_to app.job.title, app%>
-    </li>
+<% if !@user.jobs.empty?%>
+    <% if current_user.admin? && current_user!= @user%>
+    <h1> This user have applied to </h1>
+      <% @user.applications.each do |app| %>
+        <li>
+        <%= link_to app.job.title, app%>
+        </li>
+        <% end %>
+    <% elsif !current_user.admin? && current_user == @user%>
+    <h1> You have applied to </h1>
+      <% @user.applications.each do |app| %>
+        <li>
+        <%= link_to app.job.title, app%>
+        </li>
+        <% end %>
     <% end %>
-<% elsif !current_user.admin? && current_user == @user%>
-<h1> You have applied to </h1>
-  <% @user.applications.each do |app| %>
-    <li>
-     <%= link_to app.job.title, app%>
-    </li>
-    <% end %>
+<% else %>
+<h1>Currently, you don't have open positions</h1>
 <% end %>
 
 

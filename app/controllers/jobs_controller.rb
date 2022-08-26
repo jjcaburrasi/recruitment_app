@@ -29,6 +29,10 @@ class JobsController < ApplicationController
         @job = Job.find(params[:job_id])
     end
 
+    def publish
+        
+    end
+
     private
         
         

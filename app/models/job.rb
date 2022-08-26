@@ -31,7 +31,7 @@ class Job < ApplicationRecord
         stages[stages.index(stage)+1]
     end
 
-    def unpublished_jobs()
+    def self.unpublished_jobs
         Job.where(published: false)
     end
 end

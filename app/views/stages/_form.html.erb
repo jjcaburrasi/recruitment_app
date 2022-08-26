@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :job_id %>
-    <%= form.select :job_id, options_for_select(Job.all.map{ |j| [j.title,j.id]}) %>
+    <%= form.select :job_id, options_for_select(Job.unpublished_jobs.map{ |j| [j.title,j.id]}) %>
   </div>
 
   <div class="actions">

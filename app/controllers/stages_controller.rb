@@ -22,10 +22,11 @@ class StagesController < ApplicationController
   # POST /stages or /stages.json
   def create
     @stage = Stage.new(stage_params)
+    
 
     respond_to do |format|
       if @stage.save
-        format.html { redirect_to stage_url(@stage), notice: "Stage was successfully created." }
+        format.html { redirect_to job_path(params["stage"][:job_id]), notice: "Stage was successfully created." }
         format.json { render :show, status: :created, location: @stage }
       else
         format.html { render :new, status: :unprocessable_entity }
