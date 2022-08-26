@@ -9,7 +9,7 @@ def create
 end
 
 def destroy
-    job = Application.find(params[:id]).users
+    job = Job.find(params[:job_id])
     current_user.unapply(job)
     redirect_to user
 end

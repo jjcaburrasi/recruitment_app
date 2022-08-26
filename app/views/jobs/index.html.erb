@@ -1,6 +1,12 @@
 <% provide(:title, 'All Jobs') %>
 <h1>All Jobs</h1>
 
+<% if current_user.admin?%>
+ <button type="button" class="btn btn-success">
+  <%= link_to 'Create Job', new_job_path %>
+</button>
+<% end %><br>
+
 <%= paginate @jobs, window: 1 %>
 <ul class="jobs">
   <% @jobs.each do |job| %>
@@ -10,3 +16,4 @@
   <% end %>
 </ul>
 <%= paginate @jobs, window: 1 %>
+

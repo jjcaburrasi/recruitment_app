@@ -1,11 +1,9 @@
-<% provide(:title, @application.id) %>
+<% provide(:title, @application.user.name) %>
 
 <% if current_user.admin? %>
 
     <h2>User: </h2><%=@application.user.name%><br>
     <h2>Job applied: </h2><%=@application.job.title%>
-        <%#Manage jobs and applications%> 
-    <%= link_to "Manage",  "#" , class: "btn btn-info" %>
         <%= form_with(model: @application.user.comments.build, local: true) do |f| %>
             <%= hidden_field_tag :job_id, @application.job_id%>
             <%= hidden_field_tag :user_id, @application.user_id%>

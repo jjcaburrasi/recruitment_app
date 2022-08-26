@@ -3,6 +3,16 @@ User.create!(name: "AdminUser",
              email: "admin@railstutorial.org", 
              password: "123456",
              admin: true)
+User.create!(name: "Silvana", 
+             email: "sil.lis@gmail.com", 
+             password: "123456",
+             admin: false)
+User.create!(name: "Jose", 
+             email: "jjcaburrasi@gmail.com", 
+             password: "123456",
+             admin: false)
+
+
 
 # Generate a bunch of additional jobs.
       20.times do |n|
@@ -18,7 +28,18 @@ User.create!(name: "AdminUser",
       j= Job.create!(title:  title,
                   description: description)
       
-                  n = (1..5).shuffle[1]
+      st= rand(1..3)
+
+      st.times do |st|
+            str = ["Tell us about you", "Prepare coffee", "Wacth the LOTR Trilogy in one day (Extended version)", "Find the triforce", "100 meter dash", "Backflip with a glass of beer in the hand", "Name the full team of Spain WC Winner 2010"].shuffle[1]
+            Stage.create(name: str, job: j)
+            
+     
+      end
+      Stage.create(name: "Interview", job: j)
+      Stage.create(name: "Code challenge", job: j)
+      Stage.create(name: "Final offer", job: j)
+      
 
 
 end
