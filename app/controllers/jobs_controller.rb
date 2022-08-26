@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
     before_action :logged_in_user, only: [:show]
-    before_action :admin_user, only: [:edit, :destroy]
+    before_action :admin_user, only: [:show, :edit, :destroy]
 
     def new
         @job = Job.new
@@ -17,9 +17,7 @@ class JobsController < ApplicationController
 
     def show
         @job = Job.find(params[:id])
-
-        @stages = @job.stages
-        
+        @stages = @job.stages   
     end
 
     def index
