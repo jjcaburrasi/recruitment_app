@@ -7,8 +7,9 @@ class JobsController < ApplicationController
     end
 
     def create
-        @job = Job.new(title: params[:title], description: params[:description])
+        @job = Job.new(job_params)
         @job.save
+        redirect_to @job
     end
 
     def edit
@@ -30,4 +31,10 @@ class JobsController < ApplicationController
         @job = Job.find(params[:job_id])
     end
 
+    private
+        
+        
+        def job_params
+            params.require(:job).permit(:title, :description)
+        end
 end
