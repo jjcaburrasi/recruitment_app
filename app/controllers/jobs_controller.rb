@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
     before_action :logged_in_user, only: [:show]
-    before_action :admin_user, only: [:show, :edit, :destroy]
+    before_action :admin_user, only: [:edit, :destroy]
 
     def new
         @job = Job.new
