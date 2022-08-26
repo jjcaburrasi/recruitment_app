@@ -18,9 +18,7 @@ class JobsController < ApplicationController
 
     def show
         @job = Job.find(params[:id])
-
-        @stages = @job.stages
-        
+        @stages = @job.stages   
     end
 
     def index

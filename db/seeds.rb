@@ -5,7 +5,7 @@ User.create!(name: "AdminUser",
              admin: true)
 
 # Generate a bunch of additional jobs.
-100.times do |n|
+      20.times do |n|
       title  = Faker::Job.title
 
       description = "We need a #{Faker::Job.seniority} #{Faker::Job.position}.
@@ -15,6 +15,10 @@ User.create!(name: "AdminUser",
       This will be a #{Faker::Job.employment_type} contract, and we need a minimum education 
       level of #{Faker::Job.education_level}"
 
-      Job.create!(title:  title,
+      j= Job.create!(title:  title,
                   description: description)
+      
+                  n = (1..5).shuffle[1]
+
+
 end
