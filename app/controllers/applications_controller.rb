@@ -2,8 +2,8 @@ class ApplicationsController < ApplicationController
   before_action :logged_in_user
   
   def create
-    job = Job.find(params[:job_id])
-    current_user.apply(job)
+    @job = Job.find(params[:job_id])
+    Application.create(job: @job, user: current_user, stage: @job.stages.first)
     redirect_to current_user
   end
 
@@ -25,4 +25,12 @@ class ApplicationsController < ApplicationController
     redirect_to user
   end
      
+  def promote
+    app = Application.find(params[:id])
+    stage = app.stage
+    @job = stage.job
+    next_stage = @job.next_stage(stage)
+    app.update_attribute(:stage, next_stage)
+    redirect_to kanban_path(job_id: @job.id)
+  end
 end

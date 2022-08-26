@@ -1,0 +1,17 @@
+<div class="kanban" data-id="<%= @job.id %>">
+  <% @job.stages.each do |stage| %>
+    <ul class="kanban-col" data-col-id=<%= stage.id %> >
+      <li class="kanban-col-name"><%= stage.name %></li>
+      <% stage.applications.each do |app| %>
+        <li class="kanban-col-item" data-item-id=<%= app.id %> >
+          <%= app.user.name %>
+          <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+            <%= link_to 'Promote', promote_path(id: app.id) %>
+            <%= link_to 'Edit', application_path(app) %>
+            <%= link_to 'Reject', "#", method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
