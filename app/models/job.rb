@@ -8,6 +8,7 @@ class Job < ApplicationRecord
                             foreign_key: "job_id",
                             dependent: :destroy
     has_many :users_comment,through: :comments, source: :user
+
     paginates_per 15
 
     def apply(user)
@@ -24,10 +25,10 @@ class Job < ApplicationRecord
 
     def comment(user)
         users_comment << user
-    end
+    end 
 
     def next_stage(stage)
-        
         stages[stages.index(stage)+1]
     end
+
 end

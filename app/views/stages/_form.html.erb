@@ -21,6 +21,12 @@
     <%= form.select :job_id, options_for_select(Job.all.map{ |j| [j.title,j.id]}) %>
   </div>
 
+  <span class="pdf">
+      <%= form.label :challenge_file,  "Upload a challenge file: "%>
+      <%= form.file_field :challenge_file, accept: "application/pdf" %>
+  </span>
+  <br/>
+
   <div class="actions">
     <%= form.submit %>
   </div>

@@ -9,5 +9,17 @@
         <%= f.text_area :description, placeholder: "Description..." %>
     </div>
     <br/>
+    
+    
     <%= f.submit "Add Job", class: "btn btn-success" %>
 <% end %>
+
+<script type="text/javascript">
+    $("#challenge_file").bind("change", function() {
+        const size_in_megabytes = this.files[0].size/1024/1024;
+        if (size_in_megabytes > 5) {
+            alert("Maximum file size is 5MB. Please choose a smaller file.");
+            $("#challenge_file").val("");
+        }
+    });
+</script>

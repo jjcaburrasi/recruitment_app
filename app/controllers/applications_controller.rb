@@ -3,7 +3,11 @@ class ApplicationsController < ApplicationController
   
   def create
     @job = Job.find(params[:job_id])
-    Application.create(job: @job, user: current_user, stage: @job.stages.first)
+    @new_app = Application.new(job: @job, user: current_user, stage: @job.stages.first)
+    if @new_app.save
+      UserMailer.send_challenge(current_user, @new_app).deliver_now
+      flash[:info] = "Please check your email."
+    end
     redirect_to current_user
   end
 
@@ -15,7 +19,7 @@ class ApplicationsController < ApplicationController
   end
 
   def index
-    @applications=User.jobs
+    @applications = User.jobs
   end
 
 
@@ -31,6 +35,7 @@ class ApplicationsController < ApplicationController
     @job = stage.job
     next_stage = @job.next_stage(stage)
     app.update_attribute(:stage, next_stage)
+    UserMailer.send_challenge(app.user, app).deliver_now
     redirect_to kanban_path(job_id: @job.id)
   end
 end

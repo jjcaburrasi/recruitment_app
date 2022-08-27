@@ -9,7 +9,7 @@
         <h2>
             <%= @job.description %>
         </h2>
-    </section>
+      </section>
     <aside class="col-md-4">
         <section>  
             <% if @job.stages.any? %>
@@ -32,6 +32,7 @@
         </section>
     </aside>
 </div>
+
 <div class="row">    
     <% if current_user.admin? %>
         <%#Manage jobs and applications%> 

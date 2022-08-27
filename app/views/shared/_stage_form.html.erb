@@ -4,5 +4,12 @@
         <%= f.text_field :name, placeholder: "Stage name" %>
     </div>
     <br/>
+    
+    <span class="pdf">
+        <%= f.label :challenge_file,  "Upload a challenge file: "%>
+        <%= f.file_field :challenge_file, accept: "application/pdf" %>
+    </span>
+    <br/>
+
     <%= f.submit "Add stage", class: "btn btn-success" %>
 <% end %>
