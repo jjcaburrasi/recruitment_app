@@ -3,10 +3,9 @@ require "test_helper"
 class ApplicationTest < ActiveSupport::TestCase
 
   def setup
-    @user = users(:jose)
-    @job  = jobs(:job1)
+
     @app = Application.new(user_id: users(:jose).id,
-                                       job_id: jobs(:job1).id)
+                        job_id: jobs(:job1).id, stage_id: stages(:stage).id)
   end
 
   test "should be valid" do
