@@ -1,13 +1,13 @@
 <div class="kanban" data-id="<%= @job.id %>">
   <% @job.stages.each do |stage| %>
     <ul class="kanban-col" data-col-id=<%= stage.id %> >
-      <li class="kanban-col-name"><%= stage.name %></li>
+      <li class="kanban-col-name" style="display-block"><%= stage.name %></li>
       <% stage.applications.each do |app| %>
         <li class="kanban-col-item" data-item-id=<%= app.id %> >
           <%= app.user.name %>
           <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
             <button type="button" class="btn btn-danger">
-              <%= link_to '', "#", method: :delete, data: { confirm: 'Are you sure?' }, class:"glyphicon glyphicon-remove", hint:"Reject" %> 
+              <%= link_to '', reject_path(id: app.id), data: { confirm: 'Are you sure?' }, class:"glyphicon glyphicon-remove" %> 
             </button>
             <button type="button" class="btn btn-warning">
               <%= link_to '', application_path(app),  class:"glyphicon glyphicon-pencil"%> 

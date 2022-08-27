@@ -5,11 +5,21 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.send_challenge.subject
   #
+
+  # Subject can be set in your I18n file at config/locales/en.yml
+  # with the following lookup:
+  #
+  #   en.user_mailer.send_challenge.subject
+  #
   def send_challenge(user, app)
-    @greeting = "Hi #{user.name}"
-    @position = "You have applied to #{app.job.title} position."
-    attachments['challenge.pdf'] = File.read(app.stage.challenge_path) if app.stage.challenge_file.attached?
-       
+    @greeting = "Hello #{user.name}"
+    @position = app.job.title
+    
+    if app.stage.challenge_file.attached?
+      attachments['challenge.pdf'] = File.read(app.stage.challenge_path) 
+      @content = "The attached file is a coding challenge to solve at this stage of the selection process."
+    end
+
     mail to: user.email
   end
 
@@ -18,9 +28,10 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.send_offer.subject
   #
-  def send_offer
-    @greeting = "Hi #{user.name}"
-
+  def send_offer(offer)
+    @greeting = "Hello #{offer.user.name}"
+    @position = offer.job
+    @content = offer.content
     mail to: user.email
   end
 
@@ -29,9 +40,9 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.reject_candidate.subject
   #
-  def reject_candidate (user)
-    @greeting = "Hi #{user.name}"
-
+  def reject_candidate(user, job)
+    @greeting = "Hello #{user.name}"
+    @position = job.title
     mail to: user.email
   end
 end
