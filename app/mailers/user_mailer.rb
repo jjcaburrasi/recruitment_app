@@ -29,7 +29,7 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.reject_candidate.subject
   #
-  def reject_candidate
+  def reject_candidate (user)
     @greeting = "Hi #{user.name}"
 
     mail to: user.email

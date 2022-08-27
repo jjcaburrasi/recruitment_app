@@ -3,6 +3,7 @@ class Comment < ApplicationRecord
   belongs_to :job, class_name: "Job"
   validates :user_id, presence: true
   validates :job_id, presence: true
+  validates :content, presence: true
 
   def self.get_all_comments_job_user(job, user)
     Comment.where("job_id = ? AND user_id = ?",job, user).order(created_at: :desc) 
