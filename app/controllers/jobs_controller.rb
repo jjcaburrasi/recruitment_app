@@ -27,6 +27,7 @@ class JobsController < ApplicationController
 
     def kanban
         @job = Job.find(params[:job_id])
+        @stages = @job.sorted_stages
     end
 
     def publish

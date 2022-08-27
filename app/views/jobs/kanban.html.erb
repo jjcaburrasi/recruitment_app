@@ -1,5 +1,5 @@
 <div class="kanban" data-id="<%= @job.id %>">
-  <% @job.stages.each do |stage| %>
+  <% @stages.each do |stage| %>
     <ul class="kanban-col" data-col-id=<%= stage.id %> >
       <li class="kanban-col-name" style="display-block"><%= stage.name %></li>
       <% stage.applications.each do |app| %>
