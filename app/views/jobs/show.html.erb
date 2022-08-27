@@ -11,6 +11,7 @@
         </h2>
     </section>
     <% if current_user.admin? %>
+
     <aside class="col-md-4">
         <section>  
             <% if @job.stages.any? %>
@@ -34,8 +35,10 @@
     </aside>
     <% end %>
 </div>
+
 <div class="row"> 
 <% if user_signed_in? %>   
+
     <% if current_user.admin? %>
         <%#Manage jobs and applications%> 
         <%= link_to "Manage",  kanban_path(job_id: @job.id),  class: "btn btn-info" %>

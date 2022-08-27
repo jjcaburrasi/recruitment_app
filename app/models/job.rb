@@ -8,8 +8,10 @@ class Job < ApplicationRecord
                             foreign_key: "job_id",
                             dependent: :destroy
     has_many :users_comment,through: :comments, source: :user
+
     validates :title, presence: true, length: { maximum: 50 }
     validates :description, presence: true
+
     paginates_per 15
 
     def apply(user)
@@ -26,7 +28,7 @@ class Job < ApplicationRecord
 
     def comment(user)
         users_comment << user
-    end
+    end 
 
     def next_stage(stage)
         if stage.id == stages.length
@@ -34,7 +36,6 @@ class Job < ApplicationRecord
         else  
             stages[stages.index(stage)+1]
         end
-        
     end
 
     def previous_stage(stage)
@@ -48,4 +49,5 @@ class Job < ApplicationRecord
     def self.unpublished_jobs
         Job.where(published: false)
     end
+
 end
