@@ -3,11 +3,13 @@ class Job < ApplicationRecord
                             foreign_key: "job_id",
                             dependent: :destroy
     has_many :users,        through: :applications, source: :user
-    has_many :stages
+    has_many :stages,       dependent: :destroy
     has_many :comments,     class_name: "Comment",
                             foreign_key: "job_id",
                             dependent: :destroy
     has_many :users_comment,through: :comments, source: :user
+    validates :title, presence: true, length: { maximum: 50 }
+    validates :description, presence: true
     paginates_per 15
 
     def apply(user)

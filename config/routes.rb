@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   get  '/unpromote', to: 'applications#go_back_promote' #modificat tambieeeeeen
   get  '/help',    to: 'static_pages#help'
   get  '/about',   to: 'static_pages#about'
-  get  '/contact', to: 'static_pages#contact'
   get  '/jobs',    to: 'jobs#index'
   resources :users
   resources :jobs

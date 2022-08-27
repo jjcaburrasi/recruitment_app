@@ -1,0 +1,10 @@
+
+application:
+  user_id: 1
+  job_id: 2
+  stage_id: 3
+
+other_aplication:
+  user_id: 1
+  job_id: 2
+  stage: 3

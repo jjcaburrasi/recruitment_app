@@ -1,3 +1,7 @@
+job1:
+  title: job
+  description: job
+
 <% 30.times do |n| %>
 job<%= n %>:
   title: <%= "Job-#{n}" %>

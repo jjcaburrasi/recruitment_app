@@ -10,6 +10,7 @@
             <%= @job.description %>
         </h2>
     </section>
+    <% if current_user.admin? %>
     <aside class="col-md-4">
         <section>  
             <% if @job.stages.any? %>
@@ -21,7 +22,7 @@
                         
                         <% @job.stages.each do |s| %>
                             <li>
-                            <%= link_to s.name, s %>
+                            <%= s.name %>
                             </li>
                         <% end %>
                         
@@ -31,6 +32,7 @@
             <% end %>
         </section>
     </aside>
+    <% end %>
 </div>
 <div class="row"> 
 <% if user_signed_in? %>   

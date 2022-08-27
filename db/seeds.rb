@@ -1,4 +1,4 @@
-# #Create a admin sample user.
+#Create a admin sample user.
 User.create!(name: "AdminUser", 
              email: "admin@railstutorial.org", 
              password: "123456",
@@ -6,13 +6,21 @@ User.create!(name: "AdminUser",
 User.create!(name: "Silvana", 
              email: "sil.lis@gmail.com", 
              password: "123456",
+             description: "#{Faker::Job.education_level}level on #{Faker::Job.seniority}.
+             Experienced in  #{Faker::Job.field} sector. With a high
+             #{Faker::Job.key_skill} level, a higher #{Faker::Job.key_skill} level and maybe a poor #{Faker::Job.key_skill}
+             level.
+             Looking for a #{Faker::Job.employment_type} contract.",
              admin: false)
 User.create!(name: "Jose", 
              email: "jjcaburrasi@gmail.com", 
              password: "123456",
+             description: "#{Faker::Job.education_level} level on #{Faker::Job.seniority}.
+             Experienced in  #{Faker::Job.field} sector. With a high
+             #{Faker::Job.key_skill} level, a higher #{Faker::Job.key_skill} level and maybe a poor #{Faker::Job.key_skill}
+             level.
+             Looking for a #{Faker::Job.employment_type} contract.",
              admin: false)
-
-
 
 # Generate a bunch of additional jobs.
       20.times do |n|

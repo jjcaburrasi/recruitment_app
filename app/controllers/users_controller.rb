@@ -11,6 +11,9 @@ class UsersController < ApplicationController
         @users = User.page(params[:page])
     end
 
+    def update
+    end
+
     # private
     #     #Confirms an admin user.
     #     def admin_user
