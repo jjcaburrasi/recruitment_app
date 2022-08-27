@@ -50,4 +50,8 @@ class Job < ApplicationRecord
         Job.where(published: false)
     end
 
+    def sorted_stages
+        Stage.get_sorted_stages(id)
+    end
+
 end

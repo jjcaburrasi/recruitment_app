@@ -20,13 +20,11 @@
                         <h4>Stages of the selection process</h4>
                     </div>
                     <ul class="list-group list-group-flush">
-                        
-                        <% @job.stages.each do |s| %>
+                        <% @job.sorted_stages.each do |s| %>
                             <li>
-                            <%= s.name %>
+                            <%= link_to s.name, s %>
                             </li>
                         <% end %>
-                        
                     </ul>
                 </div>
                 <br/>

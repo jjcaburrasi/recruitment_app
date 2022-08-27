@@ -20,7 +20,7 @@
 <% else %>
 <h2>Hello: </h2><%=@application.user.name%><br>
 <h2>You have applied to: </h2><%=@application.job.title%>
-<h2>We will inform you about the status of your apply soon!</h2>
+<h2>Currently you are in the stage: </h2> <%= @application.stage.name %>
 
 <% end %>
         

@@ -1,6 +1,35 @@
 <h1>Editing Stage</h1>
 
-<%= render 'form', stage: @stage %>
+<%= form_with(model: @stage) do |form| %>
+  <% if @stage.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stage.errors.count, "error") %> prohibited this stage from being saved:</h2>
+
+      <ul>
+        <% @stage.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <span class="pdf">
+      <%= form.label :challenge_file,  "Upload a challenge file: "%>
+      <%= form.file_field :challenge_file, accept: "application/pdf" %>
+  </span>
+  <br/>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
 
 <%= link_to 'Show', @stage %> |
 <%= link_to 'Back', stages_path %>

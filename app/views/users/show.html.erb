@@ -1,8 +1,12 @@
 <% provide(:title, @user.name) %>
-<h2>Name:<%= @user.name %><br><br>
-E-Mail:
-  <%= @user.email %><br><br>Description:
-  <%= @user.description %></h2><br><br>
+  <h2>Name:<%= @user.name %><br><br>
+      E-Mail:
+      <%= @user.email %><br><br>
+      <% if !current_user.admin?%>
+      Description:
+      <%= @user.description %></h2><br><br>
+      <%end%>
+
     <% if current_user.admin? && current_user!= @user && @user.jobs.empty?%>
           <h1> Currently, this user don't have open positions </h1>
     <% elsif current_user.admin? && current_user!= @user && !@user.jobs.empty?%>
