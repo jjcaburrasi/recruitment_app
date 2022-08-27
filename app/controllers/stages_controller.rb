@@ -22,7 +22,7 @@ class StagesController < ApplicationController
   # POST /stages or /stages.json
   def create
     @stage = Stage.new(stage_params)
-    
+    @stage.challenge_file.attach(stage_params[:challenge_file])
 
     respond_to do |format|
       if @stage.save
@@ -38,6 +38,7 @@ class StagesController < ApplicationController
   # PATCH/PUT /stages/1 or /stages/1.json
   def update
     respond_to do |format|
+      @stage.challenge_file.attach(stage_params[:challenge_file])
       if @stage.update(stage_params)
         format.html { redirect_to stage_url(@stage), notice: "Stage was successfully updated." }
         format.json { render :show, status: :ok, location: @stage }
@@ -66,6 +67,6 @@ class StagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def stage_params
-      params.require(:stage).permit(:name, :job_id)
+      params.require(:stage).permit(:name, :job_id, :challenge_file)
     end
 end
