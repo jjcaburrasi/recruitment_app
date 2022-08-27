@@ -13,6 +13,10 @@ class Stage < ApplicationRecord
   #                                    message: "should be less than 5MB" }
 
 
+  def equals?(st)
+    id == st.id
+  end  
+
   def challenge_path
     ActiveStorage::Blob.service.path_for(challenge_file.key)
   end

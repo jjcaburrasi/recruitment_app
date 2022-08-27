@@ -1,5 +1,6 @@
 class ApplicationsController < ApplicationController
   before_action :logged_in_user
+  before_action :set_application, only: %i[ show edit update destroy promote go_back_promote reject]
   
   def create
     @job = Job.find(params[:job_id])
@@ -12,39 +13,35 @@ class ApplicationsController < ApplicationController
   end
 
   def show
-    @application = Application.find(params[:id])
-    job=@application.job_id
-    user=@application.user_id
-    @all_comments = Comment.get_all_comments_job_user(job, user)
+    @all_comments = Comment.get_all_comments_job_user(@application.job_id, @application.user_id)
   end
-
-  def index
-    @applications = User.jobs
-  end
-
 
   def destroy
-    job = Application.find(params[:id]).users
+    job = @application.job
     current_user.unapply(job)
-    redirect_to user
+    redirect_to @application.user
   end
      
   def promote
-    app = Application.find(params[:id])
-    stage = app.stage
-    @job = stage.job
-    next_stage = @job.next_stage(stage)
-    app.update_attribute(:stage, next_stage)
-    UserMailer.send_challenge(app.user, app).deliver_now
-    redirect_to kanban_path(job_id: @job.id)
+    @application.promote
+    UserMailer.send_challenge(@application.user, @application).deliver_now
+    redirect_to kanban_path(job_id: @application.job.id)
   end
 
   def go_back_promote
-    app = Application.find(params[:id])
-    stage = app.stage
-    @job = stage.job
-    previous_stage = @job.previous_stage(stage)
-    app.update_attribute(:stage, previous_stage)
-    redirect_to kanban_path(job_id: @job.id)
+    @application.go_back_promote
+    redirect_to kanban_path(job_id: @application.job.id)
   end
+
+  def reject
+    @application.deactivate
+    UserMailer.reject_candidate(@application.user, @application.job).deliver_now
+    redirect_to kanban_path(job_id: @application.job.id)
+  end
+  
+  private
+
+    def set_application
+      @application = Application.find(params[:id])
+    end
 end
