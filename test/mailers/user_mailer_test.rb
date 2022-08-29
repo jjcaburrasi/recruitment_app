@@ -5,7 +5,7 @@ class UserMailerTest < ActionMailer::TestCase
     @user=User.new(name:"jojo", email:"ejemplo@ejemplo.com", password:"pepote")
     @app = Application.new(user_id: users(:jose).id,
                         job_id: jobs(:job1).id, stage_id: stages(:stage).id)
-                  
+    @job=jobs(:job1)           
     @offer= Offer.new(content: "contenido", user_id: users(:jose).id, job_id: jobs(:job1).id, accepted: true)
 
   end
@@ -19,19 +19,19 @@ class UserMailerTest < ActionMailer::TestCase
   end
 
   test "send_offer" do
-    mail = UserMailer.send_offer(@offer)
+    mail = UserMailer.send_offer(@user, @offer)
     assert_equal "Send offer", mail.subject
     assert_equal ["ejemplo@ejemplo.com"], mail.to
     assert_equal ['noreply@recruitmentapp.com'], mail.from
-    assert_match "Hi", mail.body.encoded
+    assert_match "Hello", mail.body.encoded
   end
 
   test "reject_candidate" do
-    mail = UserMailer.reject_candidate
+    mail = UserMailer.reject_candidate(@user, @job)
     assert_equal "Reject candidate", mail.subject
     assert_equal ["ejemplo@ejemplo.com"], mail.to
     assert_equal ['noreply@recruitmentapp.com'], mail.from
-    assert_match "Hi", mail.body.encoded
+    assert_match "Hello", mail.body.encoded
   end
 
   # Example test "account_activation" do
