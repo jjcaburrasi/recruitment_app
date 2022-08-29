@@ -30,8 +30,7 @@ class JobsController < ApplicationController
         @stages = @job.sorted_stages
     end
 
-    def publish
-        
+    def publish 
     end
 
     private

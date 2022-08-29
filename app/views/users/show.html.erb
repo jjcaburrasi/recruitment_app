@@ -2,7 +2,7 @@
   <h2>Name:<%= @user.name %><br><br>
       E-Mail:
       <%= @user.email %><br><br>
-      <% if !current_user.admin?%>
+      <% if current_user.admin? || @user==current_user  %>
       Description:
       <%= @user.description %></h2><br><br>
       <%end%>
