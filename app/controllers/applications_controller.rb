@@ -1,12 +1,13 @@
 class ApplicationsController < ApplicationController
   before_action :logged_in_user
+  before_action :admin_user, only: %i[ show edit update destroy promote go_back_promote reject]
   before_action :set_application, only: %i[ show edit update destroy promote go_back_promote reject]
   
   def create
     @job = Job.find(params[:job_id])
     @new_app = Application.new(job: @job, user: current_user, stage: @job.stages.first)
     if @new_app.save
-      UserMailer.send_challenge(current_user, @new_app).deliver_now
+      UserMailer.send_application(current_user, @new_app).deliver_now
       flash[:info] = "Please check your email."
     end
     redirect_to current_user

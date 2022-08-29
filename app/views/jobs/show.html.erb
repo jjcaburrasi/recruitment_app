@@ -41,9 +41,9 @@
         <%#Manage jobs and applications%> 
         <%= link_to "Manage",  kanban_path(job_id: @job.id),  class: "btn btn-info" %>
         <%#Add stages if dont have%>
-         <% if !@job.published? %>
+         <% if !@job.status?(:published) %>
          <%= link_to "Add stages",  new_stage_path,  class: "btn btn-info" %>
-         <%= link_to "Finish job creation", "#",  class: "btn btn-info" %>
+         <%= link_to "Finish job creation", publish_path(job_id: @job.id),  class: "btn btn-info" %>
          <%end%>
 
     <% else %>

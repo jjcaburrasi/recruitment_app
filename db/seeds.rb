@@ -34,8 +34,7 @@ User.create!(name: "Jose",
       level of #{Faker::Job.education_level}"
 
       j= Job.create!(title:  title,
-                  description: description,
-                  published: true)
+                  description: description, status: "published")
       
       st= rand(1..3)
 

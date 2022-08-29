@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
     before_action :logged_in_user, only: [:show]
-    before_action :admin_user, only: [:edit, :destroy]
+    before_action :admin_user, only: [:new, :create, :edit, :destroy, :kanban, :publish]
 
     def new
         @job = Job.new
@@ -30,12 +30,17 @@ class JobsController < ApplicationController
         @stages = @job.sorted_stages
     end
 
-    def publish 
+    def publish
+        @job = Job.find(params[:job_id])
+        @job.publish
+        if @job.save 
+            flash[:success] = "The job has been published."
+        end   
+        redirect_to @job
     end
 
     private
-        
-        
+
         def job_params
             params.require(:job).permit(:title, :description)
         end

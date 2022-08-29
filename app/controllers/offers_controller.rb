@@ -1,5 +1,7 @@
 class OffersController < ApplicationController
   before_action :set_offer, only: %i[ show edit update destroy ]
+  before_action :logged_in_user, only: [:show, :index]
+  before_action :admin_user, only: [:show, :new, :create, :edit, :destroy ]
 
   # GET /offers or /offers.json
   def index

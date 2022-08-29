@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get  '/reject',     to: 'applications#reject' 
   get  '/about',      to: 'static_pages#about'
   get  '/jobs',       to: 'jobs#index'
+  get  '/publish',    to: 'jobs#publish'
 
   resources :users
   resources :jobs

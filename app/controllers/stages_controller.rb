@@ -1,5 +1,6 @@
 class StagesController < ApplicationController
   before_action :set_stage, only: %i[ show edit update destroy ]
+  before_action :admin_user
 
   # GET /stages or /stages.json
   def index

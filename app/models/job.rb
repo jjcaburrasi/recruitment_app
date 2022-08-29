@@ -32,26 +32,34 @@ class Job < ApplicationRecord
 
     def next_stage(stage)
         if stage.id == stages.length
-            stages[stages.index(stage)]
+            sorted_stages[sorted_stages.index(stage)]
         else  
-            stages[stages.index(stage)+1]
+            sorted_stages[sorted_stages.index(stage)+1]
         end
     end
 
     def previous_stage(stage)
         if stage.id == 1
-            stages[stages.index(stage)]
+            sorted_stages[sorted_stages.index(stage)]
         else  
-            stages[stages.index(stage)-1]
+            sorted_stages[sorted_stages.index(stage)-1]
         end
     end
 
     def self.unpublished_jobs
-        Job.where(published: false)
+        Job.where.not(status: "published")
     end
 
     def sorted_stages
         Stage.get_sorted_stages(id)
+    end
+
+    def status?(symbol)
+        status.to_sym == symbol
+    end
+
+    def publish
+        update_attribute(:status, "published")
     end
 
 end

@@ -23,6 +23,13 @@ class UserMailer < ApplicationMailer
     mail to: user.email
   end
 
+  def send_application(user, app)
+    @greeting = "Hello #{user.name}"
+    @position = app.job.title
+
+    mail to: user.email
+  end
+
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
