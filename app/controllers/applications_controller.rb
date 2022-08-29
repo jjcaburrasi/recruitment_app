@@ -1,6 +1,6 @@
 class ApplicationsController < ApplicationController
   before_action :logged_in_user
-  before_action :admin_user, only: %i[ show edit update destroy promote go_back_promote reject]
+  before_action :admin_user, only: %i[edit update destroy promote go_back_promote reject]
   before_action :set_application, only: %i[ show edit update destroy promote go_back_promote reject]
   
   def create

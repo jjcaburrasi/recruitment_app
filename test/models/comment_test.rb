@@ -21,8 +21,4 @@ class CommentTest < ActiveSupport::TestCase
     assert_not @comm.valid?
   end
 
-  test "comment should be present" do
-    @comm.content = ""
-    assert_not @comm.valid?
-  end
 end
