@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
 
-    # before_action :correct_user, only: [:edit, :update]
+    before_action :logged_in_user 
     before_action :admin_user, only: :index
     
     def show
         @user = User.find(params[:id])
+    
         if current_user != @user && !current_user.admin?
             redirect_to root_url
         end
