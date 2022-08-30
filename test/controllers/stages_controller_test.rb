@@ -49,7 +49,6 @@ class StagesControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Stage.count', -1) do
       delete stage_url(@stage)
     end
-
     assert_redirected_to stages_url
   end
 end
