@@ -25,9 +25,9 @@
                             <li>
                             <%= link_to s.name, s %> 
                             <% if @job.status?(:created) %>
-                            <button type="button" class="btn btn-danger">
-                                <%= link_to 'Destroy', stage: s, method: :delete, data: { confirm: 'Are you sure?' } %> 
-                            </button>
+                            
+                            <%= link_to 'Destroy', s, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger"%>
+                           
                             <% end%>
                             </li>
                         <% end %>
