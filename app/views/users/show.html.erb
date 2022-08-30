@@ -10,21 +10,33 @@
     <% if current_user.admin? && current_user!= @user && @user.jobs.empty?%>
           <h1> Currently, this user don't have open positions </h1>
     <% elsif current_user.admin? && current_user!= @user && !@user.jobs.empty?%>
-         
         <h1> This user have applied to </h1>
+          
           <% @user.applications.each do |app| %>
-              <li>
-              <%= link_to app.job.title, app%>
-              </li>
-          <% end %>
+          <% if app.active == true %>
+           <li>
+          <%= link_to app.job.title, app%>
+          </li>
+          <% else %>
+          <li>
+          <%= link_to app.job.title, app%> <---Rejected
+          </li>
+          <% end %>    
+          <% end %> 
     <% elsif !current_user.admin? && current_user == @user%>
         <% if !@user.jobs.empty?%>
           <h1> You have applied to </h1>
           <% @user.applications.each do |app| %>
-          <li>
+          <% if app.active == true %>
+           <li>
           <%= link_to app.job.title, app%>
           </li>
+          <% else %>
+          <li>
+          <%= link_to app.job.title, app%> <---Rejected
+          </li>
           <% end %>    
+          <% end %> 
         <% else %>
         <h1> Currently, you don't have open positions </h1>
         <% end %>

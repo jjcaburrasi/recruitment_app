@@ -3,6 +3,7 @@
     <ul class="kanban-col" data-col-id=<%= stage.id %> >
       <li class="kanban-col-name" style="display-block"><%= stage.name %></li>
       <% stage.applications.each do |app| %>
+        <% if app.active == true %>
         <li class="kanban-col-item" data-item-id=<%= app.id %> >
           <%= app.user.name %>
           <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
@@ -20,6 +21,7 @@
             </button>
           </div>
         </li>
+      <% end %>
       <% end %>
     </ul>
   <% end %>

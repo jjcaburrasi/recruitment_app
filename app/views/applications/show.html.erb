@@ -20,10 +20,13 @@
 <% else %>
 <h2>Hello: </h2><%=@application.user.name%><br>
 <h2>You have applied to: </h2><%=@application.job.title%>
-<h2>Currently you are in the stage: </h2> <%= @application.stage.name %>
-
+<h2>Currently you are in the stage: </h2> 
+<% if @application.active == true%>
+<%= @application.stage.name %>
+<% else %>
+Your application has been rejected
 <% end %>
-        
+<% end %>
 
 
   

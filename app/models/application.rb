@@ -26,4 +26,5 @@ class Application < ApplicationRecord
   def deactivate
     update_attribute(:active, false)
   end
+
 end
