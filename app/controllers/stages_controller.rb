@@ -56,7 +56,7 @@ class StagesController < ApplicationController
     @stage.destroy
 
     respond_to do |format|
-      format.html { redirect_to  job_path(@job_id), notice: "Stage was successfully destroyed." }
+      format.html { redirect_to stages_path, notice: "Stage was successfully destroyed." }
       format.json { head :no_content }
     end
   end
