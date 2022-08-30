@@ -4,6 +4,7 @@ class StagesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @stage = stages(:stage)
     @user = users(:jose)
+    @job = jobs(:job1)
   end
 
   test "should get index" do
@@ -49,6 +50,6 @@ class StagesControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Stage.count', -1) do
       delete stage_url(@stage)
     end
-    assert_redirected_to stages_url
+    assert_redirected_to job_url(@job)
   end
 end

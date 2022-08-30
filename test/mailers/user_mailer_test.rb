@@ -6,7 +6,7 @@ class UserMailerTest < ActionMailer::TestCase
     @app = Application.new(user_id: users(:jose).id,
                         job_id: jobs(:job1).id, stage_id: stages(:stage).id)
     @job=jobs(:job1)           
-    @offer= Offer.new(content: "contenido", user_id: users(:jose).id, job_id: jobs(:job1).id, accepted: true)
+    @offer= Offer.new(content: "contenido", user_id: users(:jose).id, job_id: jobs(:job1).id, status: "accepted")
 
   end
 

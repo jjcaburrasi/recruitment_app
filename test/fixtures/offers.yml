@@ -4,10 +4,10 @@ one:
   content: MyString
   user: one
   job: one
-  accepted: false
+  status: "created"
 
 two:
   content: MyString
   user: two
   job: two
-  accepted: false
+  status: "accepted"
