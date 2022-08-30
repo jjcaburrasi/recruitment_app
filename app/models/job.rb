@@ -9,6 +9,8 @@ class Job < ApplicationRecord
                             dependent: :destroy
     has_many :users_comment,through: :comments, source: :user
 
+    has_many :offers
+
     validates :title, presence: true, length: { maximum: 50 }
     validates :description, presence: true
 

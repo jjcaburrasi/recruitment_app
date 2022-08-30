@@ -1,6 +1,44 @@
 <h1>Editing Offer</h1>
 
-<%= render 'form', offer: @offer %>
+<%= form_with(model: @offer, url: send_offer_path(@offer), method: "get") do |form| %>
+  <% if @offer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(offer.errors.count, "error") %> prohibited this offer from being saved:</h2>
 
-<%= link_to 'Show', @offer %> |
-<%= link_to 'Back', offers_path %>
+      <ul>
+        <% offer.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= hidden_field_tag :id, @offer.id%>
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+  </div>
+<!--
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :job_id %>
+    <%= form.text_field :job_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :accepted %>
+    <%= form.check_box :accepted %>
+  </div> %>
+-->
+  <% if @offer.accepted.nil? %>      
+    <div class="actions">
+        <%= form.button "Send Offer", data: { confirm: "Are you sure?" } %>
+    </div>
+  <% end %>
+<% end %>
+
+

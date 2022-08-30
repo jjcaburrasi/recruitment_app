@@ -13,7 +13,11 @@ class Application < ApplicationRecord
     
     if !next_stage.equals?(stage)
       update_attribute(:stage, next_stage)
-    end
+      if next_stage.equals?(job.sorted_stages.last) # the candidate will receive an offer
+        offer = Offer.create(job: job, user: user)
+        return offer
+      end
+    end 
   end
 
   def go_back_promote

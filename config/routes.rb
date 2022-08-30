@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get  '/about',      to: 'static_pages#about'
   get  '/jobs',       to: 'jobs#index'
   get  '/publish',    to: 'jobs#publish'
-
+  get  '/send_offer', to: 'offers#send_offer'
   resources :users
   resources :jobs
   resources :applications

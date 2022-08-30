@@ -1,7 +1,7 @@
 class OffersController < ApplicationController
-  before_action :set_offer, only: %i[ show edit update destroy ]
+  before_action :set_offer, only: %i[ show edit update destroy send_offer]
   before_action :logged_in_user, only: [:show, :index]
-  before_action :admin_user, only: [:show, :new, :create, :edit, :destroy ]
+  before_action :admin_user, only: [:show, :new, :create, :edit, :destroy, :send_offer]
 
   # GET /offers or /offers.json
   def index
@@ -33,6 +33,16 @@ class OffersController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @offer.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def send_offer
+    if @offer.update(offer_params)
+      UserMailer.send_offer(@offer.user, @offer).deliver_now
+      flash[:info] = "Offer was sended to the candidate."
+      redirect_to offer_url(@offer)
+    else
+      redirect_to edit_offer_url(@offer)
     end
   end
 

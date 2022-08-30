@@ -36,8 +36,8 @@ class UserMailer < ApplicationMailer
   #   en.user_mailer.send_offer.subject
   #
   def send_offer(user, offer)
-    @greeting = "Hello #{offer.user.name}"
-    @position = offer.job
+    @greeting = "Hello #{user.name}"
+    @position = offer.job.title
     @content = offer.content
     mail to: user.email
   end
