@@ -1,7 +1,5 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Offers</h1>
-
+<%if current_user.admin?%>
 <table>
   <thead>
     <tr>
@@ -22,12 +20,28 @@
         <td><%= offer.status %></td>
         <td><%= link_to 'Show', offer %></td>
         <td><%= link_to 'Edit', edit_offer_path(offer) %></td>
-        <td><%= link_to 'Destroy', offer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%else%>
+<table>
+  <thead>
+    <tr>
+      <th>Job</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @current_user.offers.each do |offer| %>
+      <tr>
+        <td><%= link_to offer.job.title, offer_path(offer) %></td>
+        
+        <td><%= offer.status %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Offer', new_offer_path %>
+<%end%>

@@ -1,7 +1,7 @@
 class OffersController < ApplicationController
   before_action :set_offer, only: %i[ show edit update destroy send_offer]
   before_action :logged_in_user, only: [:show, :index]
-  before_action :admin_user, only: [:show, :new, :create, :edit, :destroy, :send_offer]
+  before_action :admin_user, only: [ :new, :create, :edit, :destroy, :send_offer]
 
   # GET /offers or /offers.json
   def index
@@ -67,6 +67,34 @@ class OffersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to offers_url, notice: "Offer was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def reject_offer
+    @offer = Offer.find(params[:id])
+    if @offer.status?(:sent)
+      @offer.reject
+      if @offer.save
+        flash[:danger] = "You have rejected the offer."
+        redirect_to offer_url(@offer)
+      end
+    else
+      flash[:danger] = "You don't have an offer."
+      redirect_to root_url
+    end
+  end
+
+  def accept_offer
+    @offer = Offer.find(params[:id])
+    if @offer.status?(:sent)
+      @offer.accept
+      if @offer.save
+        flash[:success] = "You have accepted the offer."
+        redirect_to offer_url(@offer)
+      end
+    else
+      flash[:danger] = "You don't have an offer."
+      redirect_to root_url
     end
   end
 

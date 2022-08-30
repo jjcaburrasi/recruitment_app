@@ -12,7 +12,6 @@
       </ul>
     </div>
   <% end %>
-
   <%= hidden_field_tag :id, @offer.id %>
   
   <div class="field">
@@ -24,12 +23,10 @@
     <%= form.label :user_id %>
     <%= form.text_field :user_id %>
   </div>
-
   <div class="field">
     <%= form.label :job_id %>
     <%= form.text_field :job_id %>
   </div>
-
   <div class="field">
     <%= form.label :status %>
     <%= form.check_box :status %>
@@ -41,5 +38,3 @@
     </div>
   <% end %>
 <% end %>
-
-

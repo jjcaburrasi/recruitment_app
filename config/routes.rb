@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get  '/jobs',       to: 'jobs#index'
   get  '/publish',    to: 'jobs#publish'
   get  '/send_offer', to: 'offers#send_offer'
+  get  '/reject_offer', to: 'offers#reject_offer'
+  get  '/accept_offer', to: 'offers#accept_offer'
   resources :users
   resources :jobs
   resources :applications

@@ -1,24 +1,27 @@
-<p id="notice"><%= notice %></p>
+
+<h1>Offer details</h1>
+
 
 <p>
-  <strong>Content:</strong>
+  <strong>Cogratulations, you have received an offer for: </strong>
+  <%= @offer.job.title %>
+</p>
+
+<p>
+  <strong>Details:</strong>
   <%= @offer.content %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @offer.user_id %>
-</p>
-
-<p>
-  <strong>Job:</strong>
-  <%= @offer.job_id %>
-</p>
 
 <p>
   <strong>Status:</strong>
   <%= @offer.status %>
 </p>
 
-<%= link_to 'Edit', edit_offer_path(@offer) %> |
-<%= link_to 'Back', offers_path %>
+<% if @offer.status?(:sent) %>          
+    <div class="actions">
+        <%= link_to 'Reject', reject_offer_path(id: @offer.id), data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %> 
+        <%= link_to 'Accept', accept_offer_path(id: @offer.id), data: { confirm: 'Are you sure?' }, class: "btn btn-success" %> 
+    </div>
+<% end %>
+
