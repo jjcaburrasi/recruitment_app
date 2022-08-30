@@ -52,10 +52,11 @@ class StagesController < ApplicationController
 
   # DELETE /stages/1 or /stages/1.json
   def destroy
+    @job_id =  @stage.job.id
     @stage.destroy
 
     respond_to do |format|
-      format.html { redirect_to stages_url, notice: "Stage was successfully destroyed." }
+      format.html { redirect_to  job_path(@job_id), notice: "Stage was successfully destroyed." }
       format.json { head :no_content }
     end
   end

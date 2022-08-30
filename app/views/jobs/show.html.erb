@@ -19,13 +19,20 @@
                     <div class="card-header">
                         <h4>Stages of the selection process</h4>
                     </div>
+                    <div class="card-body">
                     <ul class="list-group list-group-flush">
                         <% @job.sorted_stages.each do |s| %>
                             <li>
-                            <%= link_to s.name, s %>
+                            <%= link_to s.name, s %> 
+                            <% if @job.status?(:created) %>
+                            <button type="button" class="btn btn-danger">
+                                <%= link_to 'Destroy', stage: s, method: :delete, data: { confirm: 'Are you sure?' } %> 
+                            </button>
+                            <% end%>
                             </li>
                         <% end %>
                     </ul>
+                    </div>
                 </div>
                 <br/>
             <% end %>

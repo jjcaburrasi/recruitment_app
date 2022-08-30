@@ -24,9 +24,13 @@ class ApplicationsController < ApplicationController
   end
      
   def promote
-    @application.promote
-    UserMailer.send_challenge(@application.user, @application).deliver_now
-    redirect_to kanban_path(job_id: @application.job.id)
+    @offer = @application.promote
+    if @offer
+      redirect_to edit_offer_path(@offer.id)
+    else  
+      UserMailer.send_challenge(@application.user, @application).deliver_now
+      redirect_to kanban_path(job_id: @application.job.id)
+    end
   end
 
   def go_back_promote
