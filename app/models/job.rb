@@ -61,6 +61,7 @@ class Job < ApplicationRecord
     end
 
     def publish
+        sorted_stages.map{ |s| s.update_attribute(:order, sorted_stages.index(s))}
         update_attribute(:status, "published")
     end
 

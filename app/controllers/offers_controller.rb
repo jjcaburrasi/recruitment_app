@@ -37,6 +37,7 @@ class OffersController < ApplicationController
   end
 
   def send_offer
+    @offer.status = :sent
     if @offer.update(offer_params)
       UserMailer.send_offer(@offer.user, @offer).deliver_now
       flash[:info] = "Offer was sended to the candidate."
@@ -77,6 +78,6 @@ class OffersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def offer_params
-      params.require(:offer).permit(:content, :user_id, :job_id, :accepted)
+      params.require(:offer).permit(:content, :user_id, :job_id, :status)
     end
 end

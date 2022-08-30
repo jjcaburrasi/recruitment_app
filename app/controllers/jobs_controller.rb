@@ -32,7 +32,6 @@ class JobsController < ApplicationController
 
     def publish
         @job = Job.find(params[:job_id])
-        @job.stages.map{ |s| s.order = @job.stages.index(s)}
         @job.publish
         if @job.save 
             flash[:success] = "The job has been published."

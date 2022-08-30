@@ -3,17 +3,18 @@
 <%= form_with(model: @offer, url: send_offer_path(@offer), method: "get") do |form| %>
   <% if @offer.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(offer.errors.count, "error") %> prohibited this offer from being saved:</h2>
+      <h2><%= pluralize(@offer.errors.count, "error") %> prohibited this offer from being saved:</h2>
 
       <ul>
-        <% offer.errors.each do |error| %>
+        <% @offer.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <%= hidden_field_tag :id, @offer.id%>
+  <%= hidden_field_tag :id, @offer.id %>
+  
   <div class="field">
     <%= form.label :content %>
     <%= form.text_area :content %>
@@ -30,11 +31,11 @@
   </div>
 
   <div class="field">
-    <%= form.label :accepted %>
-    <%= form.check_box :accepted %>
+    <%= form.label :status %>
+    <%= form.check_box :status %>
   </div> %>
 -->
-  <% if @offer.accepted.nil? %>      
+  <% if @offer.status?(:created) %>      
     <div class="actions">
         <%= form.button "Send Offer", data: { confirm: "Are you sure?" } %>
     </div>

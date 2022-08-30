@@ -23,4 +23,5 @@ class Stage < ApplicationRecord
   def self.get_sorted_stages(id)
     Stage.where("job_id = ?", id).order(:created_at)
   end
+
 end
