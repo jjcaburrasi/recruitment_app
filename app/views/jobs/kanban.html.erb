@@ -1,3 +1,58 @@
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Kanban for: <%=@job.title%></h1>
+</div>
+
+ <div class="row card-group">
+    <% @stages.each do |stage| %>
+    <div class="col-xl-auto col-md-auto mb-auto">
+    <div class="card">
+       
+      <div class="card-header">
+          <h6 class="m-0 font-weight-bold text-primary"><%= stage.name %></h6>
+      </div>
+      <div class="card-body">
+          <% stage.applications.each do |app| %>
+                  <div class="card border-left-primary shadow h-100 py-2">
+                      <div class="card-body">                              
+                          <div class="row no-gutters align-items-center">    
+                              <div class="col-auto">
+                                  <button type="button" class="btn btn-success btn-circle btn-sm">
+                                    <%= link_to ' ', unpromote_path(id: app.id),  class:"fas fa-arrow-left"%> 
+                                  </button>
+                              </div>
+                              <div class="col auto">
+                                  <h5 align="center">  <%= app.user.name %>  </h5>
+                              </div>
+                              <div class="col-auto">
+                                  <button type="button" class="btn btn-danger btn-circle btn-sm">
+                                    <%= link_to ' ', reject_path(id: app.id), data: { confirm: 'Are you sure?' }, class:"fas fa-xmark"%> 
+                                  </button>
+                                
+                                  <button type="button" class="btn btn-info btn-circle btn-sm">
+                                    <%= link_to ' ', application_path(app),  class:"fas fa-address-card"%> 
+                                  </button>
+                                
+                                  <button type="button" class="btn btn-success btn-circle btn-sm">
+                                    <%= link_to ' ', promote_path(id: app.id),  class:"fas fa-arrow-right"%> 
+                                  </button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <br/>
+          <% end %>
+      </div>     
+    </div>
+    </div>
+    <% end%>
+
+     
+</div>      
+
+
+
+<!--
 <div class="kanban" data-id="<%= @job.id %>">
   <% @stages.each do |stage| %>
     <ul class="kanban-col" data-col-id=<%= stage.id %> >
@@ -25,4 +80,4 @@
       <% end %>
     </ul>
   <% end %>
-</div>
+</div>-->
