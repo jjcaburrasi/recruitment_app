@@ -11,9 +11,15 @@
 <%= paginate @jobs, window: 1 %>
 <ul class="jobs">
   <% @jobs.each do |job| %>
-    <li>
-      <%= link_to job.title, job %>
-    </li>
+   <div class="card">
+  <div class="card-header">
+    <%=job.title%>
+  </div>
+  <div class="card-body">
+    <p class="card-text"><%=job.description%></p>
+    <%= link_to "Go to work",  job_path(job.id),  class: "btn btn-primary" %>
+  </div>
+</div>
   <% end %>
 </ul>
 <%= paginate @jobs, window: 1 %>
