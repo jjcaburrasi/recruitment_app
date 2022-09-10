@@ -6,20 +6,20 @@ User.create!(name: "AdminUser",
 User.create!(name: "Silvana", 
              email: "sil.lis@gmail.com", 
              password: "123456",
-             description: "#{Faker::Job.education_level}level on #{Faker::Job.seniority}.
-             Experienced in  #{Faker::Job.field} sector. With a high
-             #{Faker::Job.key_skill} level, a higher #{Faker::Job.key_skill} level and maybe a poor #{Faker::Job.key_skill}
-             level.
-             Looking for a #{Faker::Job.employment_type} contract.",
+             description: "#{Faker::Job.education_level} level on #{Faker::Job.seniority.downcase}.
+             Experienced in  #{Faker::Job.field.downcase} sector. My best soft skills are
+             #{Faker::Job.key_skill.downcase}, #{Faker::Job.key_skill.downcase} and #{Faker::Job.key_skill.downcase}
+             .
+             Looking for a #{Faker::Job.employment_type.downcase} contract.",
              admin: false)
 User.create!(name: "Jose", 
              email: "jjcaburrasi@gmail.com", 
              password: "123456",
-             description: "#{Faker::Job.education_level} level on #{Faker::Job.seniority}.
-             Experienced in  #{Faker::Job.field} sector. With a high
-             #{Faker::Job.key_skill} level, a higher #{Faker::Job.key_skill} level and maybe a poor #{Faker::Job.key_skill}
-             level.
-             Looking for a #{Faker::Job.employment_type} contract.",
+             description: "#{Faker::Job.education_level} level on #{Faker::Job.seniority.downcase}.
+             Experienced in  #{Faker::Job.field.downcase} sector. My best soft skills are
+             #{Faker::Job.key_skill.downcase}, #{Faker::Job.key_skill.downcase} and #{Faker::Job.key_skill.downcase}
+             .
+             Looking for a #{Faker::Job.employment_type.downcase} contract.",
              admin: false)
 
 # Generate a bunch of additional jobs.
@@ -36,18 +36,13 @@ User.create!(name: "Jose",
       j= Job.create!(title:  title,
                   description: description, status: "published")
       
-      st= rand(1..3)
-
-      st.times do |st|
-            str = ["Tell us about you", "Prepare coffee", "Wacth the LOTR Trilogy in one day (Extended version)", "Find the triforce", "100 meter dash", "Backflip with a glass of beer in the hand", "Name the full team of Spain WC Winner 2010"].shuffle[1]
-            Stage.create(name: str, job: j)
+     
             
      
-      end
-      Stage.create(name: "Interview", job: j)
+    
+      Stage.create(name: "Interview with the tech team", job: j)
+      Stage.create(name: "Interview with the CEO", job: j)
       Stage.create(name: "Code challenge", job: j)
       Stage.create(name: "Final offer", job: j)
-      
-
-
 end
+      
