@@ -1,45 +1,50 @@
 <% provide(:title, @user.name) %>
-  <h2>Name:<%= @user.name %><br><br>
-      E-Mail:
-      <%= @user.email %><br><br>
-      <% if current_user.admin? || @user==current_user  %>
-      Description:
-      <%= @user.description %></h2><br><br>
-      <%end%>
 
-    <% if current_user.admin? && current_user!= @user && @user.jobs.empty?%>
-          <h1> Currently, this user don't have open positions </h1>
-    <% elsif current_user.admin? && current_user!= @user && !@user.jobs.empty?%>
-        <h1> This user have applied to </h1>
-          
+
+<div class="card">
+  <div class="card-header">
+    <%= @user.name %>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= @user.email %></h5>
+    <p class="card-text">
+        <% if current_user.admin? || @user==current_user  %>
+        <%= @user.description %>
+        <%end%>
+        <% if current_user.admin? && current_user!= @user && @user.jobs.empty?%>
+          <h3> Currently, this user don't have open positions </h3>
+        <% elsif current_user.admin? && current_user!= @user && !@user.jobs.empty?%>
+          <h3> This user have applied to </h3>
           <% @user.applications.each do |app| %>
-          <% if app.active == true %>
-           <li>
-          <%= link_to app.job.title, app%>
-          </li>
-          <% else %>
-          <li>
-          <%= link_to app.job.title, app%> <---Rejected
-          </li>
-          <% end %>    
+            <% if app.active == true %>
+            <li>
+            <%= link_to app.job.title, app%>
+            </li>
+            <% else %>
+            <li>
+            <%= link_to app.job.title, app%> <---Rejected
+            </li>
+            <% end %>    
           <% end %> 
-    <% elsif !current_user.admin? && current_user == @user%>
-        <% if !@user.jobs.empty?%>
-          <h1> You have applied to </h1>
-          <% @user.applications.each do |app| %>
-          <% if app.active == true %>
-           <li>
-          <%= link_to app.job.title, app%>
-          </li>
-          <% else %>
-          <li>
-          <%= link_to app.job.title, app%> <---Rejected
-          </li>
-          <% end %>    
+        <% elsif !current_user.admin? && current_user == @user%>
+          <% if !@user.jobs.empty?%>
+            <h3> You have applied to </h3>
+            <% @user.applications.each do |app| %>
+            <% if app.active == true %>
+            <li>
+            <%= link_to app.job.title, app%>
+            </li>
+            <% else %>
+            <li>
+            <%= link_to app.job.title, app%> <---Rejected
+            </li>
+            <% end %>    
           <% end %> 
         <% else %>
-        <h1> Currently, you don't have open positions </h1>
+        <h3> Currently, you don't have open positions </h3>
         <% end %>
     <% end %>
-
+    </p>
+  </div>
+</div>
 

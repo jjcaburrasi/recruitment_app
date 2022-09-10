@@ -2,8 +2,8 @@
 
 <% if current_user.admin? %>
 
-    <h2>User: </h2><%=@application.user.name%><br>
-    <h2>Job applied: </h2><%=@application.job.title%>
+    <h3>User: </h3><%=@application.user.name%><br>
+    <h3>Job applied: </h3><%=@application.job.title%>
         <%= form_with(model: @application.user.comments.build, local: true) do |f| %>
             <%= hidden_field_tag :job_id, @application.job_id%>
             <%= hidden_field_tag :user_id, @application.user_id%>
@@ -11,22 +11,33 @@
             <%= f.submit "Comment!", class: "btn btn-success" %>
         <% if @all_comments %>
             <% @all_comments.each do |comment| %>
-            <li>
+
             <%= comment.content %>  
-            </li>
+            
             <% end %>
             <% end %>
         <% end %>
 <% else %>
-<h2>Hello: </h2><%=@application.user.name%><br>
-<h2>You have applied to: </h2><%=@application.job.title%>
-<h2>Currently you are in the stage: </h2> 
-<% if @application.active == true%>
-<%= @application.stage.name %>
-<% else %>
-Your application has been rejected
+<div class="card">
+  <div class="card-header">
+    <%=@application.user.name%>
+  </div>
+  <div class="card-body">
+    <p class="card-text">
+    <h4>You have applied to:</h4><%=@application.job.title%>
+    <h4>Currently you are in the stage: </h4> 
+    <% if @application.active == true%>
+        <%= @application.stage.name %>
+    <% else %>
+        Your application has been rejected
+    <% end %>
+
+</p>
+  </div>
+</div>
 <% end %>
-<% end %>
+
+
 
 
   
