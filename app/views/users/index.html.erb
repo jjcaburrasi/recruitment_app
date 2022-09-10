@@ -2,17 +2,22 @@
 <h1>All users</h1>
 
 <%= paginate @users, window: 1 %>
-<ul class="users">
+
   <% @users.each do |user| %>
-    <li>
-      <%= gravatar_for user, size: 50 %>
-      <%= link_to user.name, user %>
-      <% if current_user.admin? %>
-      <button type="button" class="btn btn-success">
-      <%= link_to 'Edit user', edit_user_path(user.id)%>
+  <div class="card">
+      <h5 class="card-header"><%= link_to user.name, user %></h5>
+      <div class="card-body">
+        <h5 class="card-title"><%= user.email %></h5>
+        <p class="card-text"><%= user.description%></p>
+        <% if current_user.admin? %>
+          <button type="button" class="btn btn-success">
+          <%= link_to 'Edit user', edit_user_path(user.id)%>
+          </button>
+        <% end %>
+      </div>
+    </div>
+    <br>
       <% end %>
-      </button>
-    </li>
-  <% end %>
-</ul>
+    
+  
 <%= paginate @users, window: 1 %>
