@@ -6,7 +6,8 @@ def create
     job = Job.find(params[:job_id])
     user = User.find(params[:user_id])
     Comment.create_comment(job, user, params[:content])
-    redirect_to user
+    flash[:success]= "Comment created"
+    redirect_to request.referrer
 end
 
 def destroy

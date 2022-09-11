@@ -23,7 +23,7 @@
                                   </button>
                               </div>
                               <div class="col auto">
-                                  <h5 align="center">  <%= app.user.name %>  </h5>
+                                  &nbsp;<%= link_to app.user.name, user_path(app.user.id)%>  &nbsp;  
                               </div>
                               <div class="col-auto">
                                   <button type="button" class="btn btn-danger btn-circle btn-sm">
