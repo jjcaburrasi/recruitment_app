@@ -2,19 +2,33 @@
 
 <% if current_user.admin? %>
 
-    <h3>User: </h3><%=@application.user.name%><br>
-    <h3>Job applied: </h3><%=@application.job.title%>
-        <%= form_with(model: @application.user.comments.build, local: true) do |f| %>
-            <%= hidden_field_tag :job_id, @application.job_id%>
-            <%= hidden_field_tag :user_id, @application.user_id%>
-            <div><%= text_area_tag :content, "" %></div>
-            <%= f.submit "Comment!", class: "btn btn-success" %>
+  <div class="card">
+    <div class="card-header">
+      <h3>Candidate: <%=@application.user.name%><br></h3>
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        <h3>Job applied: <%=@application.job.title%></h3>
+          <%= form_with(model: @application.user.comments.build, local: true) do |f| %>
+              <%= hidden_field_tag :job_id, @application.job_id%>
+              <%= hidden_field_tag :user_id, @application.user_id%>
+              <div><%= text_area_tag :content, "" %></div>
+              <%= f.submit "Comment!", class: "btn btn-success" %>
+  </div>
         <% if @all_comments %>
-            <% @all_comments.each do |comment| %>
-
-            <%= comment.content %>  
+        <div class="card">
+          <div class="card-header">
+            <h4>Comments:</h4>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              <% @all_comments.each do |comment| %>
+                  - <%= comment.content %><br>
+              <% end %>
+            </p>
+          </div>
+        </div>
             
-            <% end %>
             <% end %>
         <% end %>
 <% else %>
