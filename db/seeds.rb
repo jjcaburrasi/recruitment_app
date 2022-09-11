@@ -58,6 +58,15 @@ User.create!(name: "Jose",
       Stage.create(name: "Interview with the tech team", job: j)
       Stage.create(name: "Interview with the CEO", job: j)
       Stage.create(name: "Final offer", job: j)
+
+      user2=User.find(2)
+      user3=User.find(3)
+      user4=User.find(4)
+
+      Application.create(job: j, user: user2, stage: j.stages.first)
+      Application.create(job: j, user: user3, stage: j.stages.first)
+      Application.create(job: j, user: user4, stage: j.stages.first)
+
 end
 end
 
