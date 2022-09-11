@@ -48,7 +48,7 @@ User.create!(name: "Jose",
       skills.
       This will be a #{Faker::Job.employment_type} contract, and we need a minimum education 
       level of #{Faker::Job.education_level}"
-      end
+      
 
       j= Job.create!(title:  title,
                   description: description, status: "published")
@@ -58,6 +58,7 @@ User.create!(name: "Jose",
       Stage.create(name: "Interview with the tech team", job: j)
       Stage.create(name: "Interview with the CEO", job: j)
       Stage.create(name: "Final offer", job: j)
+end
 end
 
 
