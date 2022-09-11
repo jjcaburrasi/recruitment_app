@@ -22,6 +22,22 @@ User.create!(name: "Jose",
              Looking for a #{Faker::Job.employment_type.downcase} contract.",
              admin: false)
 
+# Generate a bunch of users.
+
+40.times do |n|
+            name  = Faker::Name.name
+            email = "example-#{n+1}@railstutorial.org"
+            password = "password"
+            User.create!(name:  name,
+            email: email,
+            password:              password,
+            description: "#{Faker::Job.education_level} level on #{Faker::Job.seniority.downcase}.
+             Experienced in  #{Faker::Job.field.downcase} sector. My best soft skills are
+             #{Faker::Job.key_skill.downcase}, #{Faker::Job.key_skill.downcase} and #{Faker::Job.key_skill.downcase}
+             .
+             Looking for a #{Faker::Job.employment_type.downcase} contract."
+            )
+
 # Generate a bunch of additional jobs.
       20.times do |n|
       title  = Faker::Job.title
@@ -35,14 +51,13 @@ User.create!(name: "Jose",
 
       j= Job.create!(title:  title,
                   description: description, status: "published")
-      
-     
-            
-     
-    
+
+      Stage.create(name: "Questionary", job: j)
+      Stage.create(name: "Code challenge", job: j)
       Stage.create(name: "Interview with the tech team", job: j)
       Stage.create(name: "Interview with the CEO", job: j)
-      Stage.create(name: "Code challenge", job: j)
       Stage.create(name: "Final offer", job: j)
 end
+
+
       
