@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
     before_action :logged_in_user, only: [:show]
     before_action :admin_user, only: [:new, :create, :edit, :destroy, :kanban, :publish]
+    before_action :downcase, only: [:search_job]
 
     def new
         @job = Job.new
@@ -39,9 +40,17 @@ class JobsController < ApplicationController
         redirect_to @job
     end
 
+    def search_job
+        @find_job=Job.find_users(@search)
+    end
+
     private
 
         def job_params
             params.require(:job).permit(:title, :description)
+        end
+
+        def downcase
+            @search = params[:content].downcase
         end
 end

@@ -65,4 +65,8 @@ class Job < ApplicationRecord
         update_attribute(:status, "published")
     end
 
+    def self.find_users(job_search)
+        Job.where("lower(title) LIKE ? ","%" + job_search + "%")
+    end
+
 end

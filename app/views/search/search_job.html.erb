@@ -1,0 +1,8 @@
+<% provide(:title, "Search job") %>
+<h1>Job search results</h1>
+
+<% if !@find_users.nil? %>
+ <ul class="users">
+  <%= render @find_users %>
+</ul>
+<%end%>
