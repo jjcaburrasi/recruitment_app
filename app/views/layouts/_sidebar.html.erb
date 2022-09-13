@@ -56,6 +56,12 @@
                 <span>Offers</span></a>
         </li>
 
+         <li class="nav-item">
+            <a class="nav-link" href="<%= user_path(current_user.id) %>">
+                <i class="fas fa-fw fa-briefcase"></i>
+                <span>Logged in as: <%=current_user.name%> </span></a>
+        </li>
+
     <% end %>
 
     <!-- Divider -->

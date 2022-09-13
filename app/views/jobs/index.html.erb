@@ -18,9 +18,9 @@
 <ul class="jobs">
   <% @jobs.each do |job| %>
    <div class="card">
-  <div class="card-header">
+  <h3><div class="card-header">
     <%=job.title%>
-  </div>
+  </div></h3>
   <div class="card-body">
     <p class="card-text"><%=job.description%></p>
     <%= link_to "Go to work",  job_path(job.id),  class: "btn btn-primary" %>

@@ -1,14 +1,4 @@
 <% provide(:title, "Home") %>
-<div class="center jumbotron">
-<% if user_signed_in? %> 
-  <h1>Hello <%=current_user.name%>!!</h1>
-<%end%><br>
-  <h1>Welcome to the Recruitment App</h1>
-
-<% if !user_signed_in? %>  
-  <%= link_to "Sign up now!",  new_user_registration_path, class: "btn btn-lg btn-primary" %>
-<%end%>
-</div>
 
 <div class="card mb-12" style="max-width: 2040px;">
   <div class="row g-0">
@@ -17,8 +7,13 @@
     </div>
     <div class="col-md-6">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Let's start the journey of finding a job together!</p>
+        <h5 class="card-title">
+        <br></h5><br><br><br><br><br><br><br><br><br><br><br><br>
+        <h1><p class="card-text vcenter">Let's start together the journey of finding a job!<br></h1><br><br><br><br><br><br><br>   
+<% if !user_signed_in? %>  
+  <div class="centered"><%= link_to "Sign up now!",  new_user_registration_path, class: "btn btn-lg btn-primary" %></div>
+<%end%>
+</p>
         
       </div>
     </div>
