@@ -1,7 +1,7 @@
 class JobsController < ApplicationController
     before_action :logged_in_user, only: [:show]
     before_action :admin_user, only: [:new, :create, :edit, :destroy, :kanban, :publish]
-    before_action :downcase, only: [:search_job]
+    before_action :downcase, only: [:search_jobs]
 
     def new
         @job = Job.new
@@ -40,8 +40,8 @@ class JobsController < ApplicationController
         redirect_to @job
     end
 
-    def search_job
-        @find_job=Job.find_users(@search)
+    def search_jobs
+        @find_jobs=Job.find_jobs(@search)
     end
 
     private

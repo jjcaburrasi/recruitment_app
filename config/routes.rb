@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get  '/promote',      to: 'applications#promote' 
   get  '/unpromote',    to: 'applications#go_back_promote' 
   get  '/reject',       to: 'applications#reject'
-  get  '/search_job',   to: 'jobs#search_job'
+  get  '/search_jobs',   to: 'jobs#search_jobs'
   get  '/about',        to: 'static_pages#about'
   get  '/jobs',         to: 'jobs#index'
   get  '/publish',      to: 'jobs#publish'

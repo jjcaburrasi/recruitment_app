@@ -38,6 +38,8 @@ User.create!(name: "Jose",
              Looking for a #{Faker::Job.employment_type.downcase} contract."
             )
 
+      end
+
 # Generate a bunch of additional jobs.
       20.times do |n|
       title  = Faker::Job.title
@@ -67,7 +69,6 @@ User.create!(name: "Jose",
       Application.create(job: j, user: user3, stage: j.stages.first)
       Application.create(job: j, user: user4, stage: j.stages.first)
 
-end
 end
 
 
