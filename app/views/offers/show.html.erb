@@ -1,27 +1,45 @@
 
 <h1>Offer details</h1>
 
+<%if !current_user.admin?%>
+  <p>
+    <strong>Cogratulations, you have an offer for: </strong>
+    <%= @offer.job.title %>
+  </p>
 
-<p>
-  <strong>Cogratulations, you have an offer for: </strong>
-  <%= @offer.job.title %>
-</p>
-
-<p>
-  <strong>Details:</strong>
-  <%= @offer.content %>
-</p>
+  <p>
+    <strong>Details:</strong>
+    <%= @offer.content %>
+  </p>
 
 
-<p>
-  <strong>Status:</strong>
-  <%= @offer.status %>
-</p>
+  <p>
+    <strong>Status:</strong>
+    <%= @offer.status %>
+  </p>
 
-<% if @offer.status?(:sent) %>          
-    <div class="actions">
-        <%= link_to 'Reject', reject_offer_path(id: @offer.id), data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %> 
-        <%= link_to 'Accept', accept_offer_path(id: @offer.id), data: { confirm: 'Are you sure?' }, class: "btn btn-success" %> 
-    </div>
+  <% if @offer.status?(:sent) %>          
+      <div class="actions">
+          <%= link_to 'Reject', reject_offer_path(id: @offer.id), data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %> 
+          <%= link_to 'Accept', accept_offer_path(id: @offer.id), data: { confirm: 'Are you sure?' }, class: "btn btn-success" %> 
+      </div>
+  <% end %>
+<% else %>
+ <p>
+    <strong>You have sent an offer for: </strong>
+    <%= @offer.job.title %>
+  </p>
+
+   <p>
+    <strong>To: </strong>
+    <%= @offer.user.name%>
+  </p>
+
+  <p>
+    <strong>Details:</strong>
+    <%= @offer.content %>
+  </p>
+
 <% end %>
+
 
